@@ -21,6 +21,7 @@ class HomeSon extends BaseComponent{
             <div>
                 <p>{this.props.addSonResult.getIn(['data'])}</p>
                 <p>{this.props.num.getIn(['data'])}</p>
+                <p>{this.props.num.getIn(['twonum'])}</p>
             </div>
         )
 

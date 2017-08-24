@@ -20,7 +20,8 @@ class Home extends BaseComponent {
             data:Map({
                 num:0,
                 content:Map({
-                    data:1
+                    data:1,
+                    twonum:4
                 })
             })
         }
@@ -28,7 +29,12 @@ class Home extends BaseComponent {
 
     numaddd = (data)=>{
         this.props.dispatch(add(data));
-        this.setState({ data: this.state.data.update('num', v => v + 1) });
+        this.setState({
+            data: this.state.data
+                .update('num', v => v + 1)
+                .updateIn(['content','data'],v => v+1)
+                .updateIn(['content','twonum'],v=>v+2)
+        });
     };
 
     render() {
