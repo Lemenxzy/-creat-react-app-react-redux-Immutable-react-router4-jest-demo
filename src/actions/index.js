@@ -7,3 +7,12 @@ export const add = function (data) {
         }
 };
 
+
+export const show = function (data) {
+    return {
+        type:reducerType.SHOW,
+        data:data*1
+    }
+};
+
+
