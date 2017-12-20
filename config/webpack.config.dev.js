@@ -233,6 +233,47 @@ module.exports = {
               },
             ],
           },
+          {
+            test: /\.scss$/,
+            exclude:paths.appNodeModules,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                  modules:true,
+                  localIdentName:'[name]__[local]-[hash:base64:6]',
+                  sourceMap: true
+                },
+              },
+              {
+                loader: "sass-loader",
+                options: {
+                  sourceMap: true
+                }
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                  sourceMap: true
+                },
+              }
+            ],
+          },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.
